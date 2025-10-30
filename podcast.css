@@ -1,0 +1,110 @@
+/* Podcast Page Styles */
+/* Hero Section */
+.hero-small {
+    min-height: 40vh;
+    background: linear-gradient(rgba(1, 50, 32, 0.9), rgba(1, 50, 32, 0.9)), 
+                url('path-to-your-hero-image.jpg') center/cover;
+    padding: 6rem 0;
+}
+
+.hero-small .hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-small .hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Podcast Section */
+.section#podcast {
+    padding: var(--section-padding);
+    background: var(--white);
+}
+
+.section#podcast h2 {
+    color: var(--primary-green);
+    font-family: var(--font-brand);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section#podcast > p {
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.podcast-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-medium);
+}
+
+.podcast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.podcast-card h4 {
+    color: var(--primary-green);
+    font-family: var(--font-brand);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.podcast-card .small {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.podcast-card audio {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Custom audio player styling */
+audio::-webkit-media-controls-panel {
+    background-color: var(--cream);
+}
+
+audio::-webkit-media-controls-play-button {
+    background-color: var(--primary-green);
+    border-radius: 50%;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+    background-color: var(--secondary-green);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .podcast-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section#podcast h2 {
+        font-size: 2rem;
+    }
+
+    .section#podcast > p {
+        font-size: 1rem;
+    }
+}

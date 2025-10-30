@@ -1,0 +1,110 @@
+/* Magazine Page Styles */
+.section#magazine {
+    padding: var(--section-padding);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section#magazine h2 {
+    color: var(--primary-green);
+    font-family: var(--font-brand);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section#magazine > p {
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.magazine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.magazine-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-medium);
+}
+
+.magazine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.magazine-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--accent-gold);
+}
+
+.magazine-card h4 {
+    color: var(--primary-green);
+    font-family: var(--font-brand);
+    font-size: 1.25rem;
+    margin: 1.5rem 1.5rem 0.75rem;
+}
+
+.magazine-card p {
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 1.5rem 1.5rem;
+}
+
+/* Hover effects */
+.magazine-card img {
+    transition: transform var(--transition-medium);
+}
+
+.magazine-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .magazine-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .section#magazine h2 {
+        font-size: 2rem;
+    }
+
+    .section#magazine > p {
+        font-size: 1rem;
+    }
+
+    .magazine-card h4 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+    .magazine-card {
+        background: var(--gray-900);
+    }
+
+    .magazine-card h4 {
+        color: var(--accent-gold);
+    }
+
+    .magazine-card p {
+        color: var(--gray-300);
+    }
+}
