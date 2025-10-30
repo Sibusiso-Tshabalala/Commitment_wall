@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize AOS
-  AOS.init({ duration: 800, once: true });
+  AOS.init({ duration: 1000, once: true, offset: 100 });
 
-  // Navbar Scroll & Mobile Menu
+  // Navbar
   const navbar = document.getElementById('navbar');
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
@@ -16,19 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
     navMenu.classList.toggle('active');
   });
 
-  // Commitment Wall Logic
+  // Elements
   const form = document.getElementById('pledgeForm');
-  const commitmentsContainer = document.getElementById('commitmentsContainer');
   const voiceBtn = document.getElementById('voiceBtn');
   const listeningIndicator = document.getElementById('listeningIndicator');
   const aiAnalysis = document.getElementById('aiAnalysis');
   const analyzingIndicator = document.getElementById('analyzingIndicator');
   const submitBtn = document.getElementById('submitBtn');
+  const commitmentsContainer = document.getElementById('commitmentsContainer');
+  const noPledges = document.getElementById('noPledges');
+  const totalPledgesEl = document.getElementById('totalPledges');
+  const totalImpactEl = document.getElementById('totalImpact');
 
   let recognition = null;
   let isListening = false;
 
-  // Speech Recognition Setup
+  // Speech Recognition
   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     recognition = new SpeechRecognition();
@@ -36,14 +39,16 @@ document.addEventListener('DOMContentLoaded', function () {
     recognition.interimResults = false;
 
     recognition.onresult = (e) => {
-      document.getElementById('message').value = e.results[0][0].transcript;
+      const transcript = e.results[0][0].transcript;
+      document.getElementById('message').value = transcript;
       toggleVoice();
-      analyzeAI(e.results[0][0].transcript);
+      analyzeAI(transcript);
     };
     recognition.onerror = () => toggleVoice();
+    recognition.onend = () => { if (isListening) toggleVoice(); };
   } else {
     voiceBtn.disabled = true;
-    voiceBtn.title = "Voice not supported in this browser";
+    voiceBtn.title = "Voice not supported";
   }
 
   function toggleVoice() {
@@ -52,22 +57,22 @@ document.addEventListener('DOMContentLoaded', function () {
       recognition.stop();
       isListening = false;
       voiceBtn.classList.remove('listening');
-      voiceBtn.innerHTML = 'Microphone Voice Input';
+      voiceBtn.innerHTML = '<span class="mic-icon">Microphone</span> Voice Input';
       listeningIndicator.style.display = 'none';
     } else {
       recognition.start();
       isListening = true;
       voiceBtn.classList.add('listening');
-      voiceBtn.innerHTML = 'Stop';
-      listeningIndicator.style.display = 'block';
+      voiceBtn.innerHTML = '<span class="mic-icon">Stop</span> Stop';
+      listeningIndicator.style.display = 'flex';
     }
   }
 
   voiceBtn.addEventListener('click', toggleVoice);
 
-  // AI Analysis (Mock)
+  // AI Analysis
   function analyzeAI(text) {
-    if (text.length < 10) {
+    if (text.trim().length < 15) {
       aiAnalysis.style.display = 'none';
       return;
     }
@@ -75,22 +80,35 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
       const categories = ['Education','Environment','Healthcare','Technology','Economic Development','Social Justice','Infrastructure','Agriculture'];
       const cat = categories[Math.floor(Math.random() * categories.length)];
+      const impact = Math.floor(60 + Math.random() * 41);
+
       document.getElementById('aiCategory').textContent = cat;
-      document.getElementById('aiSentiment').textContent = 'Positive';
-      document.getElementById('aiImpactScore').textContent = (60 + Math.random() * 40).toFixed(0) + '/100';
+      document.getElementById('aiSentiment').textContent = impact > 80 ? 'Very Positive' : 'Positive';
+      document.getElementById('aiImpactScore').textContent = impact + '/100';
       document.getElementById('category').value = cat;
+
       aiAnalysis.style.display = 'block';
       analyzingIndicator.style.display = 'none';
-    }, 1500);
+    }, 1800);
   }
 
   document.getElementById('message').addEventListener('input', (e) => analyzeAI(e.target.value));
 
-  // Load & Save Commitments
+  // Commitments
   function loadCommitments() {
     const saved = JSON.parse(localStorage.getItem('commitments') || '[]');
     commitmentsContainer.innerHTML = '';
-    saved.forEach((c, i) => addCommitmentCard(c, i * 100));
+    noPledges.style.display = saved.length === 0 ? 'block' : 'none';
+
+    let totalImpact = 0;
+    saved.forEach((c, i) => {
+      const impact = Math.floor(Math.random() * 41) + 60;
+      totalImpact += impact;
+      addCommitmentCard(c, i * 150);
+    });
+
+    totalPledgesEl.textContent = saved.length;
+    totalImpactEl.textContent = totalImpact;
   }
 
   function addCommitmentCard(data, delay = 0) {
@@ -99,15 +117,21 @@ document.addEventListener('DOMContentLoaded', function () {
     card.setAttribute('data-aos', 'fade-up');
     card.setAttribute('data-aos-delay', delay);
     card.innerHTML = `
-      <div class="commitment-name">${data.name}</div>
-      <div class="commitment-message">"${data.message}"</div>
+      <div class="commitment-name">${escapeHtml(data.name)}</div>
+      <div class="commitment-message">"${escapeHtml(data.message)}"</div>
       <div class="commitment-meta">
-        <span>${new Date(data.timestamp).toLocaleDateString()}</span>
+        <span>${new Date(data.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
         <span class="commitment-category">${data.category}</span>
       </div>
     `;
     commitmentsContainer.appendChild(card);
     setTimeout(() => card.classList.add('visible'), 100);
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
   form.addEventListener('submit', (e) => {
@@ -126,15 +150,24 @@ document.addEventListener('DOMContentLoaded', function () {
       const saved = JSON.parse(localStorage.getItem('commitments') || '[]');
       saved.unshift(data);
       localStorage.setItem('commitments', JSON.stringify(saved));
-      addCommitmentCard(data);
+
+      addCommitmentCard(data, 0);
+      noPledges.style.display = 'none';
+
+      // Update stats
+      const total = saved.length;
+      const impact = Math.floor(Math.random() * 41) + 60;
+      totalPledgesEl.textContent = total;
+      totalImpactEl.textContent = parseInt(totalImpactEl.textContent) + impact;
+
       form.reset();
       aiAnalysis.style.display = 'none';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Commitment';
+      submitBtn.innerHTML = '<span>Submit Commitment</span><i class="fas fa-arrow-right"></i>';
       AOS.refresh();
-    }, 1500);
+    }, 2000);
   });
 
-  // Initialize
+  // Init
   loadCommitments();
 });

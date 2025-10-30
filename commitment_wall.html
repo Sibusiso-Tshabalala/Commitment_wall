@@ -40,55 +40,81 @@
     </div>
   </nav>
 
-  <!-- Commitment Wall Section -->
-  <section class="commitment-wall">
+  <!-- Hero Header -->
+  <section class="commitment-hero">
     <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2>Commitment Wall</h2>
-        <p>Make your pledge. Inspire change. Be part of the movement.</p>
+      <div class="hero-content" data-aos="fade-up">
+        <h1>Commitment Wall</h1>
+        <p class="hero-subtitle">Your voice. Your pledge. Our future.</p>
+        <div class="stats-bar">
+          <div class="stat"><span id="totalPledges">0</span> Pledges</div>
+          <div class="stat"><span id="totalImpact">0</span> Impact Points</div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- AI Pledge Form -->
+  <!-- AI Pledge Form -->
+  <section class="pledge-section">
+    <div class="container">
       <div class="pledge-form" data-aos="fade-up" data-aos-delay="200">
+        <div class="form-glow"></div>
         <div class="form-header">
           <h3 class="form-title">Make Your Commitment</h3>
-          <div class="ai-badge">AI-Powered</div>
+          <div class="ai-badge pulse">AI-Powered</div>
         </div>
         <form id="pledgeForm">
           <div class="form-group">
             <label for="name">Name *</label>
-            <input type="text" id="name" required />
+            <input type="text" id="name" placeholder="Enter your name" required />
           </div>
           <div class="form-group">
             <label for="email">Email (optional)</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" placeholder="you@example.com" />
           </div>
           <div class="form-group">
             <div class="voice-input-header">
               <label for="message">Your Commitment *</label>
-              <button type="button" id="voiceBtn" class="voice-btn">Microphone Voice Input</button>
+              <button type="button" id="voiceBtn" class="voice-btn pulse-hover">
+                <span class="mic-icon">Microphone</span> Voice Input
+              </button>
             </div>
-            <textarea id="message" placeholder="What positive change will you bring to Africa?" required></textarea>
-            <div id="listeningIndicator" class="listening-indicator">Microphone Listening... Speak now</div>
+            <textarea id="message" placeholder="What change will you bring to Africa? Speak or type..." required></textarea>
+            <div id="listeningIndicator" class="listening-indicator pulse">
+              <span class="wave"></span> Listening... Speak now
+            </div>
           </div>
 
           <div id="aiAnalysis" class="ai-analysis">
-            <div class="ai-header"><span>Robot</span><span class="ai-title">AI Analysis</span></div>
+            <div class="ai-header">
+              <span class="ai-icon">Robot</span>
+              <span class="ai-title">AI Analysis</span>
+            </div>
             <div class="ai-grid">
-              <div class="ai-item"><div class="ai-label">Category</div><div id="aiCategory" class="ai-value">Social Justice</div></div>
-              <div class="ai-item"><div class="ai-label">Sentiment</div><div id="aiSentiment" class="ai-value sentiment-positive">Positive</div></div>
-              <div class="ai-item"><div class="ai-label">Impact</div><div id="aiImpactScore" class="ai-value">85/100</div></div>
+              <div class="ai-item">
+                <div class="ai-label">Category</div>
+                <div id="aiCategory" class="ai-value glow">Social Justice</div>
+              </div>
+              <div class="ai-item">
+                <div class="ai-label">Sentiment</div>
+                <div id="aiSentiment" class="ai-value sentiment-positive">Positive</div>
+              </div>
+              <div class="ai-item">
+                <div class="ai-label">Impact</div>
+                <div id="aiImpactScore" class="ai-value glow">85/100</div>
+              </div>
             </div>
           </div>
 
           <div id="analyzingIndicator" class="analyzing-indicator">
-            <div class="spinner"></div> <span>AI is analyzing your commitment...</span>
+            <div class="spinner"></div>
+            <span>AI is analyzing your commitment...</span>
           </div>
 
           <div class="form-group">
             <label for="category">Category *</label>
             <select id="category" required>
-              <option value="">Select category</option>
+              <option value="">Select a category</option>
               <option>Education</option>
               <option>Environment</option>
               <option>Healthcare</option>
@@ -100,12 +126,23 @@
             </select>
           </div>
 
-          <button type="submit" id="submitBtn" class="submit-btn">Submit Commitment</button>
+          <button type="submit" id="submitBtn" class="submit-btn gradient-btn">
+            <span>Submit Commitment</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
         </form>
       </div>
+    </div>
+  </section>
 
-      <!-- Live Wall -->
+  <!-- Live Commitment Wall -->
+  <section class="wall-section">
+    <div class="container">
+      <h2 class="wall-title" data-aos="fade-up">Live Commitment Wall</h2>
       <div id="commitmentsContainer" class="commitments-grid"></div>
+      <div id="noPledges" class="no-pledges" data-aos="fade-up">
+        <p>No commitments yet. <strong>Be the first!</strong></p>
+      </div>
     </div>
   </section>
 
