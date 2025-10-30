@@ -1,1115 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Barrier to Blueprint Tracker — Simply Complex Africa</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --deep-green: #002B23;
-  --gold: #C7A34F;
-  --bg-dark: #0a0f1b;
-  --bg-soft: #0f1724;
-  --accent: #00ffc3;
-  --text: #e6eef4;
-  --muted: #8a97a8;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --radius: 16px;
-  --shadow: 0 8px 30px rgba(0,255,195,0.06);
-  --glass: rgba(255,255,255,0.03);
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-}
- 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:var(--font-sans);
-  color:var(--text);
-  background:var(--bg-dark);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  min-height:100vh;
-  overflow-x:hidden;
-}
- 
-/* background depth */
-#particles{
-  position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;
-  background: radial-gradient(circle at 20% 10%, rgba(5,10,20,0.4), transparent 10%),
-              radial-gradient(circle at 80% 80%, rgba(3,6,12,0.5), transparent 12%),
-              linear-gradient(180deg,#07101a 0%, #05060a 100%);
-}
- 
-/* header */
-header{
-  position:fixed;top:0;left:0;width:100%;z-index:20;
-  padding:18px 48px;background:rgba(10,15,27,0.9);backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.04)
-}
-header h1{
-  font-family:var(--font-serif);color:var(--gold);font-size:1.5rem;letter-spacing:0.2px;
-}
-.header-right{display:flex;gap:12px;align-items:center}
-.header-right .header-ghost{
-  background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;color:var(--muted);
-}
- 
-/* main layout */
-main{position:relative;z-index:2;padding:120px 48px 60px;display:flex;flex-direction:column;gap:34px;align-items:center}
- 
-/* intro + floating CTA */
-.intro{max-width:980px;text-align:center}
-.intro h2{
-  font-family:var(--font-serif);font-size:2.6rem;
-  background:linear-gradient(90deg,var(--deep-green),var(--gold));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  animation: glowText 6s infinite alternate;
-}
-@keyframes glowText{from{filter:brightness(1)}to{filter:brightness(1.35)}}
-.intro p{color:var(--muted);margin-top:12px;line-height:1.6;font-size:1rem}
- 
-/* floating CTA under intro */
-.cta-wrap{position:relative;margin-top:18px;display:flex;justify-content:center}
-.cta{
-  margin-top:12px;
-  background:linear-gradient(90deg,var(--deep-green),var(--gold));
-  color:#fff;padding:12px 24px;border-radius:999px;font-weight:700;
-  border:none;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.45);
-  transition:transform 220ms ease, box-shadow 220ms;
-  z-index:5;
-  will-change:transform;
-  display:inline-flex;align-items:center;gap:10px;
-}
-/* levitate animation */
-.cta.levitate{animation:levitate 3s ease-in-out infinite}
-@keyframes levitate{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-.cta:hover{transform:scale(1.03);box-shadow:0 18px 48px rgba(0,0,0,0.6)}
- 
-/* spotlight (large feature card) */
-.spotlight{
-  width:100%;max-width:1200px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:stretch;
-}
-.spot-card{
-  background:linear-gradient(160deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:var(--radius);padding:18px;border:1px solid rgba(255,255,255,0.06);
-  display:flex;gap:18px;align-items:stretch;overflow:hidden;box-shadow:var(--shadow);
-}
-.spot-media{flex:1;border-radius:12px;overflow:hidden;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;min-height:200px}
-.spot-media img,.spot-media video{width:100%;height:100%;object-fit:cover;display:block}
-.spot-info{width:360px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;justify-content:center}
-.spot-info h3{color:var(--gold);margin-bottom:6px}
-.spot-meta{font-size:0.9rem;color:var(--muted)}
-.spot-text{color:var(--text);line-height:1.4}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commitment Wall | Simply Complex Africa™</title>
+  <meta name="description" content="Join the movement: Simply Complex Africa™ - Where African Diaspora Women Build, Connect, and Transform Business. October 30, 2025, Sandton, South Africa.">
 
-/* AI Analysis Card */
-.ai-analysis-card {
-  background: linear-gradient(160deg, rgba(0,43,35,0.1), rgba(199,163,79,0.05));
-  border-radius: var(--radius);
-  padding: 16px;
-  border: 1px solid rgba(199,163,79,0.2);
-  margin-top: 12px;
-}
-.ai-analysis-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.ai-analysis-header h4 {
-  color: var(--gold);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.ai-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-.ai-tag {
-  background: rgba(0,43,35,0.3);
-  color: var(--accent);
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-.ai-recommendations {
-  font-size: 0.85rem;
-  color: var(--text);
-  line-height: 1.4;
-}
- 
-/* stats column */
-.stats{
-  display:flex;gap:28px;align-items:center;justify-content:center;width:100%;
-}
-.stat{text-align:center}
-.stat h3{font-size:1.7rem;color:var(--gold)}
-.stat p{color:var(--muted);font-size:0.92rem}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-/* Progress Tracking */
-.progress-tracker {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 16px 0;
-  position: relative;
-}
-.progress-tracker::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-50%);
-  z-index: 1;
-}
-.progress-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  flex: 1;
-}
-.stage-indicator {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--bg-soft);
-  border: 2px solid rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
-}
-.stage-indicator.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--deep-green);
-}
-.stage-label {
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-align: center;
-}
- 
-/* filters */
-.controls-row{
-  width:100%;max-width:1200px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:flex-start;flex-wrap:wrap;
-}
-.controls-row select,.controls-row input{padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);background:var(--bg-soft);color:var(--text);min-width:120px}
- 
-/* pledge wall grid */
-.pledge-wall{
-  width:100%;max-width:1200px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:6px;
-}
-.pledge-card{
-  background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;position:relative;
-  transition:transform 300ms ease, box-shadow 300ms ease;cursor:pointer;min-height:340px;display:flex;flex-direction:column;
-}
-.pledge-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
-.card-media{height:180px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center}
-.card-media img,.card-media video{width:100%;height:100%;object-fit:cover;display:block}
-.card-body{padding-top:12px;flex:1;display:flex;flex-direction:column;gap:8px}
-.card-body h4{color:var(--gold);font-size:1rem}
-.card-body .meta{font-size:0.85rem;color:var(--muted)}
-.card-body p{color:var(--text);line-height:1.4;font-size:0.95rem;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
-
-/* Progress badge */
-.progress-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--deep-green);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  z-index: 3;
-}
- 
-/* overlay info when hovered (slight) */
-.card-overlay{
-  position:absolute;inset:0;border-radius:16px;pointer-events:none;
-  background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(199,163,79,0.06), transparent 35%);
-  opacity:0;transition:opacity 220ms ease;
-}
-.pledge-card:hover .card-overlay{opacity:1}
- 
-/* modal */
-#pledgeModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:60}
-.modal-box{background:rgba(12,16,22,0.98);border-radius:14px;padding:20px;width:96%;max-width:760px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 40px 80px rgba(0,0,0,0.7)}
-.modal-grid{display:grid;grid-template-columns:1fr 320px;gap:14px}
-.modal-grid input,.modal-grid textarea,.modal-grid select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--bg-soft);color:var(--text);margin-bottom:10px}
-.modal-grid textarea{min-height:120px;resize:vertical}
-.preview-thumb{height:150px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.modal-actions{display:flex;gap:10px;align-items:center;margin-top:8px}
-.btn{background:var(--deep-green);color:#fff;padding:10px 14px;border-radius:999px;border:none;font-weight:700;cursor:pointer;transition:all 0.2s ease}
-.btn:hover{background:var(--gold);color:var(--deep-green)}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;border-radius:10px}
-
-/* AI Analysis in Modal */
-.ai-analysis-section {
-  background: rgba(0,43,35,0.1);
-  border-radius: 10px;
-  padding: 12px;
-  margin: 12px 0;
-  border: 1px solid rgba(199,163,79,0.2);
-}
-.ai-analysis-section h4 {
-  color: var(--gold);
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.ai-suggestion {
-  font-size: 0.85rem;
-  color: var(--text);
-  margin-bottom: 6px;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-}
-.ai-suggestion:before {
-  content: "💡";
-  font-size: 0.8rem;
-}
- 
-/* small helpers */
-.small{font-size:0.88rem;color:var(--muted)}
-.center{display:flex;align-items:center;justify-content:center}
-
-/* Export Section */
-.export-section {
-  margin-top: 20px;
-  padding: 16px;
-  background: rgba(0,43,35,0.1);
-  border-radius: var(--radius);
-  border: 1px solid rgba(199,163,79,0.2);
-}
-.export-section h3 {
-  color: var(--gold);
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
-.export-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
- 
-/* responsive */
-@media (max-width:1000px){
-  .spotlight{grid-template-columns:1fr;gap:12px}
-  .modal-grid{grid-template-columns:1fr}
-  header{padding:14px 20px}
-  main{padding:100px 20px 60px}
-  .controls-row{flex-direction:column;align-items:stretch}
-  .controls-row select,.controls-row input{min-width:auto}
-}
-</style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/commitment-wall.css" />
 </head>
 <body>
- 
-<div id="particles"></div>
- 
-<header>
-  <h1>Simply Complex Africa</h1>
-  <div class="header-right">
-    <div class="header-ghost small">Barrier to Blueprint Tracker</div>
-    <button id="openModalHeader" class="header-ghost small">+ Add Initiative</button>
-  </div>
-</header>
- 
-<main>
-  <div class="intro">
-    <h2>Barrier to Blueprint Tracker</h2>
-    <p>
-      Transform African challenges into scalable solutions. Track ideas from conception to impact, 
-      powered by AI insights to maximize your initiative's potential across the continent.
-    </p>
- 
-    <div class="cta-wrap">
-      <button id="openModal" class="cta levitate">+ Add New Initiative</button>
-    </div>
-  </div>
- 
-  <!-- Spotlight + Stats -->
-  <div class="spotlight" id="spotlightWrap">
-    <div class="spot-card" id="spotCard">
-      <div class="spot-media" id="spotMedia">
-        <div class="small" style="color:var(--muted)">No initiatives yet — yours will appear here.</div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8c569fba3d7b73834840045f945d6040" alt="Simply Complex Africa™" class="logo">
       </div>
-      <div class="spot-info">
-        <h3 id="spotName">—</h3>
-        <div class="spot-meta small" id="spotMeta">—</div>
-        <div class="spot-text small" id="spotText">Add an initiative to feature it here.</div>
-        
-        <!-- Progress Tracker -->
-        <div class="progress-tracker" id="spotProgress">
-          <div class="progress-stage">
-            <div class="stage-indicator">1</div>
-            <div class="stage-label">Idea</div>
-          </div>
-          <div class="progress-stage">
-            <div class="stage-indicator">2</div>
-            <div class="stage-label">Pilot</div>
-          </div>
-          <div class="progress-stage">
-            <div class="stage-indicator">3</div>
-            <div class="stage-label">Scaled</div>
-          </div>
-        </div>
-        
-        <!-- AI Analysis -->
-        <div class="ai-analysis-card" id="spotAI">
-          <div class="ai-analysis-header">
-            <span>🤖</span>
-            <h4>AI Analysis</h4>
-          </div>
-          <div class="ai-tags" id="spotAITags">
-            <span class="ai-tag">High Impact</span>
-            <span class="ai-tag">Tech-enabled</span>
-          </div>
-          <div class="ai-recommendations small" id="spotAIRecommendations">
-            AI insights will appear here for featured initiatives.
-          </div>
-        </div>
+      <ul class="nav-list" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="commitment_wall.html" class="nav-link active">Commitment Wall</a></li>
+        <li><a href="legacy_wall.html" class="nav-link">Legacy Wall</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
     </div>
- 
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-end;">
-      <div style="background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:100%;box-shadow:var(--shadow)">
-        <div class="stats" id="statsRow">
-          <div class="stat"><h3 id="totalInitiatives">0</h3><p>Initiatives</p></div>
-          <div class="stat"><h3 id="topCategory">—</h3><p>Top Category</p></div>
-          <div class="stat"><h3 id="countries">—</h3><p>Countries</p></div>
-        </div>
-      </div>
- 
-      <div style="background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:100%;">
-        <div style="display:flex;gap:8px;align-items:center;">
-          <label class="small">Auto-rotate</label>
-          <input id="autoRotate" type="checkbox" checked>
-          <div style="flex:1"></div>
-          <button id="prevSpot" class="btn ghost">Prev</button>
-          <button id="nextSpot" class="btn ghost">Next</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  </nav>
 
-  <!-- Export Section -->
-  <div class="export-section">
-    <h3>Blueprint Reports</h3>
-    <p class="small" style="margin-bottom: 12px;">Export initiative data for presentations and stakeholder reports</p>
-    <div class="export-actions">
-      <button id="exportPDF" class="btn">Export PDF Report</button>
-      <button id="exportData" class="btn ghost">Export Data (JSON)</button>
-      <button id="generateSummary" class="btn ghost">Generate AI Summary</button>
-    </div>
-  </div>
- 
-  <!-- filters -->
-  <div class="controls-row" id="controls">
-    <select id="filterCategory">
-      <option value="">All Categories</option>
-      <option>Education</option>
-      <option>Environment</option>
-      <option>Healthcare</option>
-      <option>Technology</option>
-      <option>Economic Development</option>
-      <option>Social Justice</option>
-      <option>Infrastructure</option>
-      <option>Agriculture</option>
-    </select>
-    <select id="filterProgress">
-      <option value="">All Stages</option>
-      <option value="idea">Idea Phase</option>
-      <option value="pilot">Pilot Phase</option>
-      <option value="scaled">Scaled Impact</option>
-    </select>
-    <input id="filterCountry" placeholder="Filter by country">
-    <input id="searchName" placeholder="Search initiatives" style="flex:1">
-    <select id="sortBy">
-      <option value="recent">Most recent</option>
-      <option value="progress">Progress level</option>
-      <option value="category">Category A→Z</option>
-      <option value="location">Country A→Z</option>
-    </select>
-  </div>
- 
-  <!-- wall -->
-  <div class="pledge-wall" id="initiativeWall" aria-live="polite"></div>
-</main>
- 
-<!-- modal -->
-<div id="pledgeModal">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <h2 id="modalTitle" style="color:var(--gold);margin-bottom:8px">Add New Initiative</h2>
-    <div class="modal-grid">
-      <div>
-        <input id="name" placeholder="Initiative Name / Organization" />
-        <input id="location" placeholder="Country / Region" />
-        <select id="category">
-          <option value="">Select Category</option>
-          <option>Education</option>
-          <option>Environment</option>
-          <option>Healthcare</option>
-          <option>Technology</option>
-          <option>Economic Development</option>
-          <option>Social Justice</option>
-          <option>Infrastructure</option>
-          <option>Agriculture</option>
-        </select>
-        
-        <label class="small">Progress Stage</label>
-        <select id="progressStage">
-          <option value="idea">Idea Phase</option>
-          <option value="pilot">Pilot Phase</option>
-          <option value="scaled">Scaled Impact</option>
-        </select>
-        
-        <textarea id="pledgeText" placeholder="Describe your initiative, challenges, and proposed solution..."></textarea>
-        
-        <!-- AI Analysis Section -->
-        <div class="ai-analysis-section" id="modalAI" style="display: none;">
-          <h4><span>🤖</span> AI Analysis</h4>
-          <div id="aiSuggestions">
-            <!-- AI suggestions will appear here -->
+  <!-- Commitment Wall Section -->
+  <section class="commitment-wall">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Commitment Wall</h2>
+        <p>Make your pledge. Inspire change. Be part of the movement.</p>
+      </div>
+
+      <!-- AI Pledge Form -->
+      <div class="pledge-form" data-aos="fade-up" data-aos-delay="200">
+        <div class="form-header">
+          <h3 class="form-title">Make Your Commitment</h3>
+          <div class="ai-badge">AI-Powered</div>
+        </div>
+        <form id="pledgeForm">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" required />
           </div>
-          <button id="applyAISuggestions" class="btn ghost small" style="margin-top: 8px;">Apply AI Suggestions</button>
-        </div>
-      </div>
- 
-      <div>
-        <label class="small">Upload image (optional)</label>
-        <input id="imageFile" accept="image/*" type="file">
-        <label class="small" style="margin-top:8px">Upload video (optional)</label>
-        <input id="videoFile" accept="video/*" type="file">
-        <div class="preview-thumb" id="previewThumb"><div class="small" style="color:var(--muted)">No file selected</div></div>
+          <div class="form-group">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" />
+          </div>
+          <div class="form-group">
+            <div class="voice-input-header">
+              <label for="message">Your Commitment *</label>
+              <button type="button" id="voiceBtn" class="voice-btn">Microphone Voice Input</button>
+            </div>
+            <textarea id="message" placeholder="What positive change will you bring to Africa?" required></textarea>
+            <div id="listeningIndicator" class="listening-indicator">Microphone Listening... Speak now</div>
+          </div>
 
-        <div class="modal-actions">
-          <button id="analyzeWithAI" class="btn ghost">Analyze with AI</button>
-          <button id="submitPledge" class="btn">Submit Initiative</button>
-          <button id="cancelPledge" class="btn ghost">Cancel</button>
-        </div>
-        <div style="margin-top:8px" class="small">AI analysis provides insights on scalability and impact potential.</div>
+          <div id="aiAnalysis" class="ai-analysis">
+            <div class="ai-header"><span>Robot</span><span class="ai-title">AI Analysis</span></div>
+            <div class="ai-grid">
+              <div class="ai-item"><div class="ai-label">Category</div><div id="aiCategory" class="ai-value">Social Justice</div></div>
+              <div class="ai-item"><div class="ai-label">Sentiment</div><div id="aiSentiment" class="ai-value sentiment-positive">Positive</div></div>
+              <div class="ai-item"><div class="ai-label">Impact</div><div id="aiImpactScore" class="ai-value">85/100</div></div>
+            </div>
+          </div>
+
+          <div id="analyzingIndicator" class="analyzing-indicator">
+            <div class="spinner"></div> <span>AI is analyzing your commitment...</span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category *</label>
+            <select id="category" required>
+              <option value="">Select category</option>
+              <option>Education</option>
+              <option>Environment</option>
+              <option>Healthcare</option>
+              <option>Technology</option>
+              <option>Economic Development</option>
+              <option>Social Justice</option>
+              <option>Infrastructure</option>
+              <option>Agriculture</option>
+            </select>
+          </div>
+
+          <button type="submit" id="submitBtn" class="submit-btn">Submit Commitment</button>
+        </form>
+      </div>
+
+      <!-- Live Wall -->
+      <div id="commitmentsContainer" class="commitments-grid"></div>
+    </div>
+  </section>
+
+  <!-- Poster -->
+  <section class="poster-section" data-aos="fade-up">
+    <img src="poster.png" alt="Simply Complex Africa™ Poster" class="poster-image">
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-text">
+        <p>© 2025 Simply Complex Africa™. All rights reserved.</p>
+        <p>Where African Diaspora Women Build, Connect, and Transform Business</p>
       </div>
     </div>
-  </div>
-</div>
- 
-<script>
-/* ---------------------------
-  State & DOM hooks
-----------------------------*/
-const openModal = document.getElementById('openModal');
-const openModalHeader = document.getElementById('openModalHeader');
-const pledgeModal = document.getElementById('pledgeModal');
-const submitPledgeBtn = document.getElementById('submitPledge');
-const cancelPledgeBtn = document.getElementById('cancelPledge');
-const initiativeWall = document.getElementById('initiativeWall');
- 
-const nameInput = document.getElementById('name');
-const locationInput = document.getElementById('location');
-const categoryInput = document.getElementById('category');
-const progressInput = document.getElementById('progressStage');
-const textInput = document.getElementById('pledgeText');
-const imageFileInput = document.getElementById('imageFile');
-const videoFileInput = document.getElementById('videoFile');
-const previewThumb = document.getElementById('previewThumb');
-const analyzeWithAI = document.getElementById('analyzeWithAI');
-const modalAI = document.getElementById('modalAI');
-const aiSuggestions = document.getElementById('aiSuggestions');
-const applyAISuggestions = document.getElementById('applyAISuggestions');
- 
-const totalInitiativesEl = document.getElementById('totalInitiatives');
-const topCategoryEl = document.getElementById('topCategory');
-const countriesEl = document.getElementById('countries');
- 
-const spotMedia = document.getElementById('spotMedia');
-const spotName = document.getElementById('spotName');
-const spotMeta = document.getElementById('spotMeta');
-const spotText = document.getElementById('spotText');
-const spotProgress = document.getElementById('spotProgress');
-const spotAI = document.getElementById('spotAI');
-const spotAITags = document.getElementById('spotAITags');
-const spotAIRecommendations = document.getElementById('spotAIRecommendations');
- 
-const filterCategory = document.getElementById('filterCategory');
-const filterProgress = document.getElementById('filterProgress');
-const filterCountry = document.getElementById('filterCountry');
-const searchName = document.getElementById('searchName');
-const sortBy = document.getElementById('sortBy');
- 
-const autoRotate = document.getElementById('autoRotate');
-const prevSpot = document.getElementById('prevSpot');
-const nextSpot = document.getElementById('nextSpot');
+  </footer>
 
-const exportPDF = document.getElementById('exportPDF');
-const exportData = document.getElementById('exportData');
-const generateSummary = document.getElementById('generateSummary');
- 
-let initiatives = JSON.parse(localStorage.getItem('initiatives')||'[]') || [];
-// ensure ISO dates for sorting
-initiatives = initiatives.map(p => (p.isoDate ? p : {...p, isoDate: p.isoDate || new Date().toISOString()}));
- 
-let spotlightIndex = 0;
-let spotlightTimer = null;
-const SPOT_MS = 8000; // rotate every 8s
-const MAX_MB = 24; // file limit
-
-// AI Analysis Templates
-const aiTemplates = {
-  education: {
-    tags: ["High Impact", "Scalable", "Community-focused"],
-    recommendations: [
-      "Consider digital learning platforms to reach rural areas",
-      "Partner with local schools and community centers",
-      "Measure impact through literacy rates and skill acquisition"
-    ]
-  },
-  environment: {
-    tags: ["Sustainable", "Climate-focused", "Community-led"],
-    recommendations: [
-      "Implement monitoring systems to track environmental impact",
-      "Engage local communities in conservation efforts",
-      "Explore carbon credit opportunities for funding"
-    ]
-  },
-  technology: {
-    tags: ["Innovative", "Scalable", "Digital Transformation"],
-    recommendations: [
-      "Consider mobile-first solutions for wider reach",
-      "Build partnerships with tech hubs and incubators",
-      "Focus on user-friendly design for non-technical users"
-    ]
-  },
-  healthcare: {
-    tags: ["Critical", "Life-saving", "Community Health"],
-    recommendations: [
-      "Leverage telemedicine for remote consultations",
-      "Train community health workers for wider impact",
-      "Partner with local clinics and hospitals"
-    ]
-  },
-  default: {
-    tags: ["Promising", "Community-focused", "Needs Validation"],
-    recommendations: [
-      "Conduct pilot testing in target community",
-      "Identify key metrics to measure success",
-      "Build partnerships with local organizations"
-    ]
-  }
-};
- 
-/* ---------------------------
-  particles (subtle)
-----------------------------*/
-const particles = document.getElementById('particles');
-function makeParticle(){
-  const s = document.createElement('span');
-  const size = Math.random()*6 + 2;
-  s.style.position='absolute';s.style.width=size+'px';s.style.height=size+'px';
-  s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
-  s.style.background = 'rgba(199,163,79,' + (0.06 + Math.random()*0.12) + ')';
-  s.style.borderRadius='50%'; s.style.pointerEvents='none';
-  s.style.transform = 'translateY(0)';
-  particles.appendChild(s);
-  setTimeout(()=>s.remove(), 22000);
-}
-setInterval(makeParticle, 500);
- 
-/* ---------------------------
-  modal open/close & preview
-----------------------------*/
-function openPledgeModal(){
-  pledgeModal.style.display='flex';
-  // reset
-  nameInput.value='';locationInput.value='';categoryInput.value='';progressInput.value='idea';textInput.value='';
-  imageFileInput.value='';videoFileInput.value='';
-  modalAI.style.display = 'none';
-  previewThumb.innerHTML = '<div class="small" style="color:var(--muted)">No file selected</div>';
-}
-openModal.addEventListener('click', openPledgeModal);
-openModalHeader.addEventListener('click', openPledgeModal);
- 
-cancelPledgeBtn.addEventListener('click', ()=>{ pledgeModal.style.display='none'; });
- 
-pledgeModal.addEventListener('click', e=>{
-  if(e.target === pledgeModal) pledgeModal.style.display='none';
-});
- 
-/* file preview */
-let imageData = null, imageType=null, videoData=null, videoType=null;
- 
-imageFileInput.addEventListener('change', e=>{
-  const f = e.target.files[0];
-  if(!f){ imageData=null; imageType=null; renderPreview(); return; }
-  if(f.size > MAX_MB*1024*1024){ alert('Image too large (max '+MAX_MB+'MB)'); imageFileInput.value=''; return; }
-  const r = new FileReader();
-  r.onload = () => { imageData = r.result; imageType = f.type; renderPreview(); };
-  r.readAsDataURL(f);
-});
- 
-videoFileInput.addEventListener('change', e=>{
-  const f = e.target.files[0];
-  if(!f){ videoData=null; videoType=null; renderPreview(); return; }
-  if(f.size > MAX_MB*1024*1024){ alert('Video too large (max '+MAX_MB+'MB)'); videoFileInput.value=''; return; }
-  const r = new FileReader();
-  r.onload = () => { videoData = r.result; videoType = f.type; renderPreview(); };
-  r.readAsDataURL(f);
-});
- 
-function renderPreview(){
-  previewThumb.innerHTML='';
-  if(videoData){
-    const v = document.createElement('video');
-    v.src = videoData; v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
-    v.style.width='100%';v.style.height='100%';v.style.objectFit='cover';
-    previewThumb.appendChild(v);
-    return;
-  }
-  if(imageData){
-    const img = document.createElement('img');
-    img.src = imageData; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
-    previewThumb.appendChild(img);
-    return;
-  }
-  previewThumb.innerHTML = '<div class="small" style="color:var(--muted)">No file selected</div>';
-}
-
-/* ---------------------------
-  AI Analysis
-----------------------------*/
-analyzeWithAI.addEventListener('click', () => {
-  const category = categoryInput.value;
-  const text = textInput.value.trim();
-  
-  if (!category || !text) {
-    alert('Please select a category and describe your initiative first.');
-    return;
-  }
-  
-  // Show loading state
-  aiSuggestions.innerHTML = '<div class="small" style="color:var(--muted)">Analyzing with AI...</div>';
-  modalAI.style.display = 'block';
-  
-  // Simulate AI analysis with timeout
-  setTimeout(() => {
-    const template = aiTemplates[category.toLowerCase()] || aiTemplates.default;
-    
-    let recommendations = [...template.recommendations];
-    
-    // Add some dynamic recommendations based on text content
-    if (text.length > 100) {
-      if (text.toLowerCase().includes('rural') || text.toLowerCase().includes('remote')) {
-        recommendations.push("Consider mobile or offline solutions for areas with limited connectivity");
-      }
-      if (text.toLowerCase().includes('youth') || text.toLowerCase().includes('young')) {
-        recommendations.push("Engage youth through digital platforms and social media");
-      }
-      if (text.toLowerCase().includes('women') || text.toLowerCase().includes('female')) {
-        recommendations.push("Ensure gender inclusion in program design and leadership");
-      }
-    }
-    
-    // Display AI suggestions
-    aiSuggestions.innerHTML = '';
-    recommendations.forEach(rec => {
-      const suggestion = document.createElement('div');
-      suggestion.className = 'ai-suggestion';
-      suggestion.textContent = rec;
-      aiSuggestions.appendChild(suggestion);
-    });
-  }, 1500);
-});
-
-applyAISuggestions.addEventListener('click', () => {
-  // In a real implementation, this would apply the AI suggestions to the form
-  alert('AI suggestions applied! Consider incorporating these insights into your initiative plan.');
-});
- 
-/* ---------------------------
-  submit initiative
-----------------------------*/
-submitPledgeBtn.addEventListener('click', ()=>{
-  const name = nameInput.value.trim();
-  const location = locationInput.value.trim();
-  const category = categoryInput.value;
-  const progress = progressInput.value;
-  const text = textInput.value.trim();
-  if(!name || !location || !category || !text){ alert('Please fill in all required fields.'); return; }
- 
-  // Generate AI analysis for the new initiative
-  const template = aiTemplates[category.toLowerCase()] || aiTemplates.default;
-  const aiAnalysis = {
-    tags: [...template.tags],
-    recommendations: [...template.recommendations],
-    impactScore: Math.floor(Math.random() * 30) + 70, // 70-100
-    scalability: Math.floor(Math.random() * 30) + 70
-  };
- 
-  const newInitiative = {
-    id: 'i_'+Date.now(),
-    name, location, category, progress, text,
-    isoDate: new Date().toISOString(),
-    mediaImage: imageData || null,
-    mediaImageType: imageType || null,
-    mediaVideo: videoData || null,
-    mediaVideoType: videoType || null,
-    aiAnalysis: aiAnalysis
-  };
- 
-  initiatives.unshift(newInitiative);
-  persist();
-  renderWall();
-  pledgeModal.style.display='none';
-});
- 
-/* ---------------------------
-  persist & helpers
-----------------------------*/
-function persist(){ localStorage.setItem('initiatives', JSON.stringify(initiatives)); }
- 
-function escapeHtml(s){ return (s||'').toString().replace(/[&<>"'`]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[m])); }
- 
-/* ---------------------------
-  render wall & card interactions
-----------------------------*/
-function renderWall(){
-  initiativeWall.innerHTML='';
-  const items = applyFiltersAndSort(initiatives.slice());
-  if(items.length===0){
-    initiativeWall.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0;">No initiatives yet — be the first to add one.</div>';
-    setEmptySpotlight();
-    updateStats(); return;
-  }
- 
-  items.forEach((p, idx)=>{
-    const card = document.createElement('div'); card.className='pledge-card';
-    
-    // Progress badge
-    const progressLabel = p.progress === 'idea' ? 'Idea' : p.progress === 'pilot' ? 'Pilot' : 'Scaled';
-    const progressClass = p.progress === 'idea' ? 'idea' : p.progress === 'pilot' ? 'pilot' : 'scaled';
-    
-    card.innerHTML = `
-      <div class="progress-badge">${progressLabel}</div>
-      <div class="card-overlay"></div>
-      <div class="card-media" data-id="${p.id}"></div>
-      <div class="card-body">
-        <h4>${escapeHtml(p.name)}</h4>
-        <div class="meta">${escapeHtml(p.category)} • ${escapeHtml(p.location)}</div>
-        <p>${escapeHtml(p.text)}</p>
-        ${p.aiAnalysis ? `<div class="ai-tags">${p.aiAnalysis.tags.slice(0,2).map(tag => `<span class="ai-tag">${tag}</span>`).join('')}</div>` : ''}
-      </div>
-    `;
-    
-    // media
-    const mediaWrap = card.querySelector('.card-media');
-    if(p.mediaVideo){
-      const vid = document.createElement('video');
-      vid.src = p.mediaVideo; vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'metadata';
-      vid.style.width='100%';vid.style.height='100%';vid.style.objectFit='cover';
-      mediaWrap.appendChild(vid);
-      // hover play
-      card.addEventListener('mouseenter', ()=>{ playVideoSafe(vid); });
-      card.addEventListener('mouseleave', ()=>{ try{ vid.pause(); vid.currentTime=0 }catch(e){} });
-      // for mobile: click toggles play/pause
-      card.addEventListener('click', (ev)=>{
-        if(window.innerWidth <= 900){ if(vid.paused) playVideoSafe(vid); else vid.pause(); }
-      });
-    } else if(p.mediaImage){
-      const img = document.createElement('img'); img.src = p.mediaImage; img.alt = p.name;
-      mediaWrap.appendChild(img);
-    } else {
-      mediaWrap.innerHTML = '<div class="center small" style="color:var(--muted);padding:12px">No media</div>';
-    }
- 
-    // hover radial
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-      card.style.setProperty('--x', x+'px'); card.style.setProperty('--y', y+'px');
-    });
- 
-    // click in card opens spotlight and focuses
-    card.addEventListener('click', e=>{
-      spotlightIndex = initiatives.findIndex(pp => pp.id === p.id);
-      showSpotlight(spotlightIndex);
-      window.scrollTo({top: document.querySelector('#spotCard').getBoundingClientRect().top + window.scrollY - 120, behavior:'smooth'});
-    });
- 
-    initiativeWall.appendChild(card);
-  });
- 
-  updateStats();
-  if(initiatives.length>0) showSpotlight(spotlightIndex);
-}
- 
-/* safe video play (handle promise) */
-function playVideoSafe(vid){
-  const p = vid.play();
-  if(p && p.catch) p.catch(()=>{ /* autoplay blocked on some devices */ });
-}
- 
-/* ---------------------------
-  filters & sort
-----------------------------*/
-function applyFiltersAndSort(list){
-  const category = (filterCategory.value||'').trim().toLowerCase();
-  const progress = (filterProgress.value||'').trim().toLowerCase();
-  const country = (filterCountry.value||'').trim().toLowerCase();
-  const search = (searchName.value||'').trim().toLowerCase();
-  const sort = sortBy.value;
- 
-  let filtered = list.filter(p=>{
-    if(category && p.category.toLowerCase() !== category) return false;
-    if(progress && p.progress !== progress) return false;
-    if(country && !p.location.toLowerCase().includes(country)) return false;
-    if(search && !(p.name.toLowerCase().includes(search) || p.text.toLowerCase().includes(search) || p.category.toLowerCase().includes(search))) return false;
-    return true;
-  });
- 
-  if(sort==='recent') filtered.sort((a,b)=> new Date(b.isoDate) - new Date(a.isoDate));
-  if(sort==='progress') {
-    const progressOrder = { 'scaled': 3, 'pilot': 2, 'idea': 1 };
-    filtered.sort((a,b)=> progressOrder[b.progress] - progressOrder[a.progress]);
-  }
-  if(sort==='category') filtered.sort((a,b)=> a.category.localeCompare(b.category));
-  if(sort==='location') filtered.sort((a,b)=> a.location.localeCompare(b.location));
-  return filtered;
-}
-[filterCategory, filterProgress, filterCountry, searchName, sortBy].forEach(el=>el.addEventListener('input', ()=>renderWall()));
- 
-/* ---------------------------
-  stats & spotlight
-----------------------------*/
-function updateStats(){
-  totalInitiativesEl.textContent = initiatives.length;
-  const categoryCount = {}; const countrySet = new Set();
-  initiatives.forEach(p => { categoryCount[p.category] = (categoryCount[p.category]||0)+1; countrySet.add(p.location); });
-  const top = Object.entries(categoryCount).sort((a,b)=>b[1]-a[1])[0];
-  topCategoryEl.textContent = top ? `${top[0]} (${top[1]})` : '—';
-  countriesEl.textContent = countrySet.size || '—';
-}
- 
-function setEmptySpotlight(){
-  spotMedia.innerHTML = '<div class="small" style="color:var(--muted)">No initiatives yet — yours will appear here.</div>';
-  spotName.textContent='—'; spotMeta.textContent='—'; spotText.textContent='Add an initiative to feature it here.';
-  
-  // Reset progress tracker
-  const indicators = spotProgress.querySelectorAll('.stage-indicator');
-  indicators.forEach(indicator => indicator.classList.remove('active'));
-  
-  // Hide AI analysis
-  spotAI.style.display = 'none';
-}
- 
-function showSpotlight(index){
-  if(!initiatives || initiatives.length===0){ setEmptySpotlight(); return; }
-  spotlightIndex = (index + initiatives.length) % initiatives.length;
-  const p = initiatives[spotlightIndex];
-  spotMedia.innerHTML = '';
-  if(p.mediaVideo){
-    const v = document.createElement('video'); v.src = p.mediaVideo; v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
-    v.style.width='100%';v.style.height='100%';v.style.objectFit='cover'; spotMedia.appendChild(v);
-    playVideoSafe(v);
-  } else if(p.mediaImage){
-    const img = document.createElement('img'); img.src = p.mediaImage; spotMedia.appendChild(img);
-  } else {
-    spotMedia.innerHTML = '<div class="small" style="color:var(--muted)">No media</div>';
-  }
-  spotName.textContent = p.name;
-  spotMeta.textContent = `${p.category} • ${p.location} • ${new Date(p.isoDate).toLocaleString()}`;
-  spotText.textContent = p.text;
-  
-  // Update progress tracker
-  const indicators = spotProgress.querySelectorAll('.stage-indicator');
-  indicators.forEach((indicator, i) => {
-    indicator.classList.remove('active');
-    if ((p.progress === 'idea' && i === 0) || 
-        (p.progress === 'pilot' && i <= 1) || 
-        (p.progress === 'scaled' && i <= 2)) {
-      indicator.classList.add('active');
-    }
-  });
-  
-  // Show AI analysis if available
-  if (p.aiAnalysis) {
-    spotAI.style.display = 'block';
-    spotAITags.innerHTML = p.aiAnalysis.tags.map(tag => `<span class="ai-tag">${tag}</span>`).join('');
-    spotAIRecommendations.innerHTML = p.aiAnalysis.recommendations.slice(0, 2).map(rec => `• ${rec}`).join('<br>');
-  } else {
-    spotAI.style.display = 'none';
-  }
-}
- 
-/* auto rotate */
-function startRotate(){ stopRotate(); if(!autoRotate.checked) return; spotlightTimer = setInterval(()=>{ spotlightIndex = (spotlightIndex+1)%Math.max(1,initiatives.length); showSpotlight(spotlightIndex); }, SPOT_MS); }
-function stopRotate(){ if(spotlightTimer){ clearInterval(spotlightTimer); spotlightTimer=null; } }
-autoRotate.addEventListener('change', ()=>{ if(autoRotate.checked) startRotate(); else stopRotate(); });
-prevSpot.addEventListener('click', ()=>{ spotlightIndex = (spotlightIndex-1+initiatives.length)%Math.max(1,initiatives.length); showSpotlight(spotlightIndex); });
-nextSpot.addEventListener('click', ()=>{ spotlightIndex = (spotlightIndex+1)%Math.max(1,initiatives.length); showSpotlight(spotlightIndex); });
-
-/* ---------------------------
-  Export Functions
-----------------------------*/
-exportPDF.addEventListener('click', () => {
-  if (initiatives.length === 0) {
-    alert('No initiatives to export.');
-    return;
-  }
-  
-  // In a real implementation, this would generate a PDF
-  alert('PDF report generation would be implemented here. This would create a professional report with all initiatives.');
-});
-
-exportData.addEventListener('click', () => {
-  if (initiatives.length === 0) {
-    alert('No initiatives to export.');
-    return;
-  }
-  
-  const dataStr = JSON.stringify(initiatives, null, 2);
-  const dataBlob = new Blob([dataStr], {type: 'application/json'});
-  
-  const url = URL.createObjectURL(dataBlob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'barrier-to-blueprint-initiatives.json';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-});
-
-generateSummary.addEventListener('click', () => {
-  if (initiatives.length === 0) {
-    alert('No initiatives to summarize.');
-    return;
-  }
-  
-  // Generate AI summary
-  const categoryCount = {};
-  const progressCount = { idea: 0, pilot: 0, scaled: 0 };
-  
-  initiatives.forEach(initiative => {
-    categoryCount[initiative.category] = (categoryCount[initiative.category] || 0) + 1;
-    progressCount[initiative.progress] = (progressCount[initiative.progress] || 0) + 1;
-  });
-  
-  const topCategory = Object.entries(categoryCount).sort((a,b) => b[1] - a[1])[0];
-  
-  const summary = `
-Barrier to Blueprint Tracker - Initiative Summary
-
-Total Initiatives: ${initiatives.length}
-Most Common Category: ${topCategory ? `${topCategory[0]} (${topCategory[1]} initiatives)` : 'N/A'}
-Progress Distribution:
-- Idea Phase: ${progressCount.idea} initiatives
-- Pilot Phase: ${progressCount.pilot} initiatives
-- Scaled Impact: ${progressCount.scaled} initiatives
-
-Top Recommendations:
-1. Focus resources on ${topCategory ? topCategory[0] : 'key'} initiatives with highest impact potential
-2. Support ${progressCount.idea} ideas in moving to pilot phase
-3. Scale successful pilots (${progressCount.pilot}) to maximize impact
-
-Generated on: ${new Date().toLocaleDateString()}
-  `;
-  
-  alert(summary);
-});
- 
-/* ---------------------------
-  init & helpers
-----------------------------*/
-function init(){
-  // Normalize older entries without required keys
-  initiatives = initiatives.map(p => ({
-    id: p.id || 'i_'+(Date.now()+Math.random()*1000),
-    name: p.name||'Unnamed Initiative', 
-    location: p.location||'—', 
-    category: p.category||'Other', 
-    progress: p.progress||'idea', 
-    text: p.text||'',
-    isoDate: p.isoDate||new Date().toISOString(),
-    mediaImage: p.mediaImage || p.media || null,
-    mediaImageType: p.mediaImageType || p.mediaType || null,
-    mediaVideo: p.mediaVideo || null,
-    mediaVideoType: p.mediaVideoType || null,
-    aiAnalysis: p.aiAnalysis || null
-  }));
- 
-  renderWall();
-  startRotate();
-}
- 
-window.addEventListener('focus', ()=>{ if(autoRotate.checked) startRotate(); });
-window.addEventListener('blur', ()=> stopRotate());
- 
-// Add some sample data if empty
-if (initiatives.length === 0) {
-  initiatives = [
-    {
-      id: 'sample_1',
-      name: 'Digital Literacy for Rural Youth',
-      location: 'Kenya',
-      category: 'Education',
-      progress: 'pilot',
-      text: 'Providing tablet-based digital skills training to youth in remote areas to bridge the digital divide and create economic opportunities.',
-      isoDate: new Date('2023-10-15').toISOString(),
-      aiAnalysis: {
-        tags: ['High Impact', 'Scalable', 'Tech-enabled'],
-        recommendations: [
-          'Partner with local schools and community centers',
-          'Develop offline-capable learning modules',
-          'Measure impact through employment rates post-training'
-        ],
-        impactScore: 85,
-        scalability: 90
-      }
-    },
-    {
-      id: 'sample_2',
-      name: 'Solar-Powered Irrigation Systems',
-      location: 'Nigeria',
-      category: 'Agriculture',
-      progress: 'scaled',
-      text: 'Deploying affordable solar-powered irrigation to smallholder farmers, increasing crop yields by 40% and reducing water usage.',
-      isoDate: new Date('2023-09-22').toISOString(),
-      aiAnalysis: {
-        tags: ['Sustainable', 'Climate-focused', 'Community-led'],
-        recommendations: [
-          'Expand to neighboring regions with similar climate conditions',
-          'Develop maintenance training programs for local technicians',
-          'Explore carbon credit funding opportunities'
-        ],
-        impactScore: 92,
-        scalability: 88
-      }
-    }
-  ];
-  persist();
-}
- 
-init();
-</script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/commitment-wall.js"></script>
 </body>
 </html>
