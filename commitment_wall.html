@@ -3,588 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered Pledge Form</title>
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --danger-color: #ef4444;
-            --danger-hover: #dc2626;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            --purple: #8b5cf6;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --border-radius: 0.5rem;
-            --border-radius-lg: 0.75rem;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.5;
-            color: var(--gray-800);
-            background-color: var(--gray-100);
-            padding: 2rem;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .pledge-form {
-            background-color: white;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-        }
-        
-        .form-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--gray-800);
-        }
-        
-        .ai-badge {
-            padding: 0.25rem 0.75rem;
-            background-color: var(--purple);
-            color: white;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--gray-700);
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .voice-input-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .voice-btn {
-            padding: 0.5rem 1rem;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background-color 0.2s;
-        }
-        
-        .voice-btn:hover {
-            background-color: var(--primary-hover);
-        }
-        
-        .voice-btn.listening {
-            background-color: var(--danger-color);
-        }
-        
-        .voice-btn.listening:hover {
-            background-color: var(--danger-hover);
-        }
-        
-        .listening-indicator {
-            padding: 0.5rem;
-            background-color: #f0f9ff;
-            border: 1px solid #e0f2fe;
-            border-radius: 0.375rem;
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
-            color: #0369a1;
-        }
-        
-        .ai-analysis {
-            padding: 1rem;
-            background-color: #f8fafc;
-            border-radius: var(--border-radius);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 1.5rem;
-        }
-        
-        .ai-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .ai-title {
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-        
-        .ai-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .ai-item {
-            margin-bottom: 0.5rem;
-        }
-        
-        .ai-label {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-        }
-        
-        .ai-value {
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-        
-        .sentiment-positive {
-            color: var(--success-color);
-        }
-        
-        .sentiment-negative {
-            color: var(--danger-color);
-        }
-        
-        .ai-suggestions {
-            margin-top: 0.75rem;
-        }
-        
-        .suggestion-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--gray-700);
-            margin-bottom: 0.25rem;
-        }
-        
-        .analyzing-indicator {
-            padding: 1rem;
-            background-color: #fffbeb;
-            border-radius: var(--border-radius);
-            border: 1px solid #fef3c7;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .spinner {
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid var(--warning-color);
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 0.5rem;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 600;
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius);
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .submit-btn:hover {
-            background-color: var(--primary-hover);
-        }
-        
-        .submit-btn:disabled {
-            background-color: var(--gray-400);
-            cursor: not-allowed;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .hidden {
-            display: none;
-        }
-    </style>
+    <title>Simply Complex Africa™ | African Diaspora Women Transforming Business Together</title>
+    <meta name="description" content="Join the movement: Simply Complex Africa™ - Where African Diaspora Women Build, Connect, and Transform Business. October 30, 2025, Sandton, South Africa.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commitment Wall | Simply Complex Africa™</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="pledge-form">
-            <div class="form-header">
-                <h3 class="form-title">Make Your Commitment</h3>
-                <div class="ai-badge">AI-Powered</div>
-            </div>
-            
-            <form id="pledgeForm">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email (optional)</label>
-                    <input type="email" id="email" name="email">
-                </div>
-                
-                <div class="form-group">
-                    <div class="voice-input-header">
-                        <label for="message">Your Commitment *</label>
-                        <button type="button" id="voiceBtn" class="voice-btn">
-                            <span>🎤</span>
-                            Voice Input
-                        </button>
-                    </div>
-                    
-                    <textarea id="message" name="message" rows="4" 
-                              placeholder="What positive change do you want to bring to Africa? Or click the microphone to speak..." 
-                              required></textarea>
-                    
-                    <div id="listeningIndicator" class="listening-indicator hidden">
-                        🎤 Listening... Speak now
-                    </div>
-                </div>
-                
-                <div id="aiAnalysis" class="ai-analysis hidden">
-                    <div class="ai-header">
-                        <span>🤖</span>
-                        <span class="ai-title">AI Analysis</span>
-                    </div>
-                    
-                    <div class="ai-grid">
-                        <div class="ai-item">
-                            <div class="ai-label">Category</div>
-                            <div id="aiCategory" class="ai-value">Social Justice</div>
-                        </div>
-                        <div class="ai-item">
-                            <div class="ai-label">Sentiment</div>
-                            <div id="aiSentiment" class="ai-value sentiment-positive">positive</div>
-                        </div>
-                        <div class="ai-item">
-                            <div class="ai-label">Impact Score</div>
-                            <div id="aiImpactScore" class="ai-value">50/100</div>
-                        </div>
-                    </div>
-                    
-                    <div class="ai-suggestions">
-                        <div class="ai-label">AI Suggestions:</div>
-                        <div id="aiRecommendations">
-                            <div class="suggestion-item">
-                                <span>💡</span>
-                                <span>Consider documenting your progress</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="analyzingIndicator" class="analyzing-indicator hidden">
-                    <div class="spinner"></div>
-                    <span>AI is analyzing your commitment...</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="category">Category *</label>
-                    <select id="category" name="category" required>
-                        <option value="">Select a category</option>
-                        <option value="Education">Education</option>
-                        <option value="Environment">Environment</option>
-                        <option value="Healthcare">Healthcare</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Economic Development">Economic Development</option>
-                        <option value="Social Justice">Social Justice</option>
-                        <option value="Infrastructure">Infrastructure</option>
-                        <option value="Agriculture">Agriculture</option>
-                    </select>
-                </div>
-                
-                <button type="submit" id="submitBtn" class="submit-btn">
-                    Submit Commitment
-                </button>
-            </form>
-        </div>
+    <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8c569fba3d7b73834840045f945d6040" alt="Simply Complex Africa™" class="logo">
+      </div>
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="commitment_wall.html" class="nav-link">Commitment Wall</a></li>
+        <li><a href="legacy_wall.html" class="nav-link">Legacy Wall</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
     </div>
+  </nav>
+<br>
+<br>
+  <section class="commitment-wall">
+    <div class="container">
+      <br>
+      <br>
+      <h2>Commitment Wall</h2>
+      <p>View commitments and pledges made by participants.</p>
+    </div>
+  </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Form elements
-            const form = document.getElementById('pledgeForm');
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const messageInput = document.getElementById('message');
-            const categorySelect = document.getElementById('category');
-            const voiceBtn = document.getElementById('voiceBtn');
-            const listeningIndicator = document.getElementById('listeningIndicator');
-            const aiAnalysis = document.getElementById('aiAnalysis');
-            const aiCategory = document.getElementById('aiCategory');
-            const aiSentiment = document.getElementById('aiSentiment');
-            const aiImpactScore = document.getElementById('aiImpactScore');
-            const aiRecommendations = document.getElementById('aiRecommendations');
-            const analyzingIndicator = document.getElementById('analyzingIndicator');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            // Voice recognition variables
-            let recognition = null;
-            let isListening = false;
-            
-            // Check if browser supports speech recognition
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.lang = 'en-US';
-                
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript;
-                    messageInput.value = transcript;
-                    toggleVoiceInput();
-                    analyzeWithAI(transcript);
-                };
-                
-                recognition.onerror = function(event) {
-                    console.error('Speech recognition error:', event.error);
-                    toggleVoiceInput();
-                    if (event.error === 'not-allowed') {
-                        alert('Microphone access denied. Please allow microphone access to use voice input.');
-                    }
-                };
-                
-                recognition.onend = function() {
-                    if (isListening) {
-                        toggleVoiceInput();
-                    }
-                };
-            } else {
-                // Voice recognition not supported
-                voiceBtn.disabled = true;
-                voiceBtn.title = 'Voice recognition not supported in your browser';
-            }
-            
-            // Toggle voice input
-            function toggleVoiceInput() {
-                if (!recognition) {
-                    alert('Voice recognition not supported in your browser. Try Chrome or Edge.');
-                    return;
-                }
-                
-                if (isListening) {
-                    recognition.stop();
-                    isListening = false;
-                    voiceBtn.classList.remove('listening');
-                    voiceBtn.innerHTML = '<span>🎤</span> Voice Input';
-                    listeningIndicator.classList.add('hidden');
-                    messageInput.style.borderColor = '#d1d5db';
-                } else {
-                    try {
-                        recognition.start();
-                        isListening = true;
-                        voiceBtn.classList.add('listening');
-                        voiceBtn.innerHTML = '<span>🔴</span> Stop Listening';
-                        listeningIndicator.classList.remove('hidden');
-                        messageInput.style.borderColor = '#3b82f6';
-                    } catch (error) {
-                        console.error('Error starting voice recognition:', error);
-                    }
-                }
-            }
-            
-            // Simulate AI analysis
-            function analyzeWithAI(message) {
-                if (message.length < 10) {
-                    aiAnalysis.classList.add('hidden');
-                    return;
-                }
-                
-                analyzingIndicator.classList.remove('hidden');
-                
-                // Simulate API call delay
-                setTimeout(() => {
-                    // Mock AI analysis results
-                    const mockAnalysis = {
-                        category: getRandomCategory(),
-                        sentiment: getRandomSentiment(),
-                        urgency: getRandomUrgency(),
-                        keyTopics: getRandomTopics(),
-                        impactScore: Math.floor(Math.random() * 41) + 60, // 60-100
-                        recommendations: getRandomRecommendations()
-                    };
-                    
-                    // Update UI with analysis results
-                    aiCategory.textContent = mockAnalysis.category;
-                    aiSentiment.textContent = mockAnalysis.sentiment;
-                    aiSentiment.className = 'ai-value ' + 
-                        (mockAnalysis.sentiment === 'positive' ? 'sentiment-positive' : 
-                         mockAnalysis.sentiment === 'negative' ? 'sentiment-negative' : '');
-                    aiImpactScore.textContent = mockAnalysis.impactScore + '/100';
-                    
-                    // Update category select
-                    categorySelect.value = mockAnalysis.category;
-                    
-                    // Update recommendations
-                    aiRecommendations.innerHTML = '';
-                    mockAnalysis.recommendations.forEach(rec => {
-                        const suggestion = document.createElement('div');
-                        suggestion.className = 'suggestion-item';
-                        suggestion.innerHTML = '<span>💡</span><span>' + rec + '</span>';
-                        aiRecommendations.appendChild(suggestion);
-                    });
-                    
-                    // Show analysis
-                    aiAnalysis.classList.remove('hidden');
-                    analyzingIndicator.classList.add('hidden');
-                }, 1500);
-            }
-            
-            // Helper functions for mock data
-            function getRandomCategory() {
-                const categories = [
-                    'Education', 'Environment', 'Healthcare', 'Technology',
-                    'Economic Development', 'Social Justice', 'Infrastructure', 'Agriculture'
-                ];
-                return categories[Math.floor(Math.random() * categories.length)];
-            }
-            
-            function getRandomSentiment() {
-                const sentiments = ['positive', 'positive', 'positive', 'neutral']; // Mostly positive
-                return sentiments[Math.floor(Math.random() * sentiments.length)];
-            }
-            
-            function getRandomUrgency() {
-                const urgencies = ['low', 'medium', 'high'];
-                return urgencies[Math.floor(Math.random() * urgencies.length)];
-            }
-            
-            function getRandomTopics() {
-                const topics = [
-                    ['education', 'youth'],
-                    ['environment', 'sustainability'],
-                    ['health', 'community'],
-                    ['technology', 'innovation'],
-                    ['economy', 'development'],
-                    ['justice', 'equality'],
-                    ['infrastructure', 'growth'],
-                    ['agriculture', 'food security']
-                ];
-                return topics[Math.floor(Math.random() * topics.length)];
-            }
-            
-            function getRandomRecommendations() {
-                const recommendations = [
-                    'Consider documenting your progress',
-                    'Connect with local organizations working in this area',
-                    'Set measurable goals for your commitment',
-                    'Share your pledge to inspire others',
-                    'Research existing initiatives to avoid duplication',
-                    'Consider the long-term sustainability of your approach',
-                    'Think about how to measure your impact',
-                    'Identify potential partners who could help'
-                ];
-                
-                // Return 1-3 random recommendations
-                const count = Math.floor(Math.random() * 3) + 1;
-                const shuffled = [...recommendations].sort(() => 0.5 - Math.random());
-                return shuffled.slice(0, count);
-            }
-            
-            // Event listeners
-            voiceBtn.addEventListener('click', toggleVoiceInput);
-            
-            messageInput.addEventListener('input', function() {
-                analyzeWithAI(this.value);
-            });
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Disable submit button and show loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    // Get form data
-                    const formData = {
-                        name: nameInput.value,
-                        email: emailInput.value,
-                        message: messageInput.value,
-                        category: categorySelect.value,
-                        timestamp: new Date().toISOString()
-                    };
-                    
-                    // In a real application, you would send this data to a server
-                    console.log('Pledge submitted:', formData);
-                    
-                    // Show success message
-                    alert('Thank you for your commitment! Your pledge has been submitted.');
-                    
-                    // Reset form
-                    form.reset();
-                    aiAnalysis.classList.add('hidden');
-                    
-                    // Re-enable submit button
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit Commitment';
-                }, 2000);
-            });
-        });
-    </script>
+  
+  <!-- Poster Section -->
+<section class="poster-section">
+  <img src="poster.png" alt="Simply Complex Africa™ Poster" class="poster-image">
+</section>
+
+    <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <!-- <img src="poster.png" alt="Simply Complex Africa™ Poster" class="footer-poster"> -->
+
+      </div>
+      <div class="footer-text">
+        <p>&copy; 2025 Simply Complex Africa™. All rights reserved.</p>
+        <p>Where African Diaspora Women Build, Connect, and Transform Business</p>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
