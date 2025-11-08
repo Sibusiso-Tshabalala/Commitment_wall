@@ -18,6 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | Simply Complex Africa™</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
   <nav class="navbar">
@@ -42,6 +43,80 @@
     <div class="container">
       <h2>Gallery</h2>
       <p>Browse highlights from Simply Complex Africa™ events.</p>
+    
+    <section class="guest-carousel-section">
+      <h2>Event Highlights</h2>
+
+      <div class="carousel">
+
+        <div class="slides">
+          <input type="radio" name="radio-btn" id="img-1" checked>
+          <input type="radio" name="radio-btn" id="img-2">
+          <input type="radio" name="radio-btn" id="img-3">
+          <input type="radio" name="radio-btn" id="img-4">
+          <input type="radio" name="radio-btn" id="img-5">
+          <input type="radio" name="radio-btn" id="img-6">
+
+          <!-- Images -->
+          <div class="slide first">
+            <img src="images/gallery1.jpg" alt="Speaker 1">
+          </div>
+          <div class="slide">
+            <img src="images/gallery2.jpg" alt="Speaker 2">
+          </div>
+          <div class="slide">
+            <img src="images/gallery3.jpg" alt="Speaker 3">
+          </div>
+          <div class="slide">
+            <img src="images/gallery4.jpg" alt="Speaker 4">
+          </div>
+          <div class="slide">
+            <img src="images/gallery5.jpg" alt="Speaker 5">
+          </div>
+          <div class="slide">
+            <img src="images/gallery6.jpg" alt="Speaker 6">
+          </div>
+
+          <!-- Auto navigation -->
+          <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+            <div class="auto-btn5"></div>
+            <div class="auto-btn6"></div>
+          </div>
+        </div>
+
+        <!-- Manual navigation -->
+        <div class="navigation-manual">
+          <label for="img-1" class="manual-btn"></label>
+          <label for="img-2" class="manual-btn"></label>
+          <label for="img-3" class="manual-btn"></label>
+          <label for="img-4" class="manual-btn"></label>
+          <label for="img-5" class="manual-btn"></label>
+          <label for="img-6" class="manual-btn"></label>
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel-controls" role="group" aria-label="Gallery controls">
+          <button class="gallery-prev" aria-label="Previous">‹</button>
+          <button class="gallery-play" aria-label="Play">Pause</button>
+          <button class="gallery-next" aria-label="Next">›</button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="carousel-thumbs" aria-hidden="false">
+          <img class="thumb" data-index="0" src="images/gallery1.jpg" alt="Thumb 1">
+          <img class="thumb" data-index="1" src="images/gallery2.jpg" alt="Thumb 2">
+          <img class="thumb" data-index="2" src="images/gallery3.jpg" alt="Thumb 3">
+          <img class="thumb" data-index="3" src="images/gallery4.jpg" alt="Thumb 4">
+          <img class="thumb" data-index="4" src="images/gallery5.jpg" alt="Thumb 5">
+          <img class="thumb" data-index="5" src="images/gallery6.jpg" alt="Thumb 6">
+        </div>
+
+      </div>
+    </section>
     </div>
   </section>
   <!-- Poster Section -->
@@ -64,5 +139,6 @@
     </div>
   </div>
 </footer>
+  <script src="js/gallery.js"></script>
 </body>
 </html>

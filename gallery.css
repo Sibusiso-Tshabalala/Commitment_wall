@@ -1,0 +1,102 @@
+/* General styling */
+.guest-carousel-section {
+  background: #F4F1E3; /* beige background */
+  padding: 60px 0;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.guest-carousel-section h2 {
+  color: #0B3B2E; /* dark green */
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+/* Carousel container */
+.carousel {
+  width: 80%;
+  max-width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+/* Slides container */
+.slides {
+  width: 600%;
+  height: 100%;
+  display: flex;
+}
+
+.slides input {
+  display: none;
+}
+
+/* Each slide */
+.slide {
+  width: 16.6666%;
+  transition: 1s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Manual navigation dots */
+.navigation-manual {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.manual-btn {
+  border: 2px solid #0B3B2E;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.manual-btn:hover {
+  background: #0B3B2E;
+}
+
+/* Slide navigation logic */
+#img-1:checked ~ .first { margin-left: 0; }
+#img-2:checked ~ .first { margin-left: -16.6666%; }
+#img-3:checked ~ .first { margin-left: -33.3333%; }
+#img-4:checked ~ .first { margin-left: -50%; }
+#img-5:checked ~ .first { margin-left: -66.6666%; }
+#img-6:checked ~ .first { margin-left: -83.3333%; }
+
+/* Auto navigation animation */
+@keyframes slide {
+  0%, 15% { margin-left: 0; }
+  20%, 35% { margin-left: -16.6666%; }
+  40%, 55% { margin-left: -33.3333%; }
+  60%, 75% { margin-left: -50%; }
+  80%, 95% { margin-left: -66.6666%; }
+  100% { margin-left: -83.3333%; }
+}
+
+.slides .first {
+  animation: slide 24s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel {
+    height: 300px;
+    width: 90%;
+  }
+}
